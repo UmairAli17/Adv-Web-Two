@@ -26,4 +26,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    /**
+     * [roles Users Has Many Roles: ManytoMany]
+     * @return [type] [Return ManytoMany Relationship]
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Roles::class);
+    }
+    
+    /**
+     * [hasRole Check Whether User has Specified Role]
+     * @param  [string]  $role [role name]
+     * @return boolean | Array/Collection
+     */
+    public function hasRole($role)
+    {
+        if(is_string($role))
+        {
+            return $this->roles->contains('name', $role);
+        }
+        return !! $role->intersect($this->roles)->count();
+    }
 }
