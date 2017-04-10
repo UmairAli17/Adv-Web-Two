@@ -50,4 +50,13 @@ class User extends Authenticatable
         }
         return !! $role->intersect($this->roles)->count();
     }
+
+    /**
+     * [User can only have one Business]
+     * @return [type] [description]
+     */
+    public function business()
+    {
+        return $this->hasOne(Businesses::class);
+    }
 }
