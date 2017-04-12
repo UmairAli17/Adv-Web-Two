@@ -32,6 +32,9 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 	Route::get('/shopkeeper/{shop}/edit', 'ShopController@edit_shop')->name('shop.edit');
 	//UPDATE Shop Profile
 	Route::PATCH('/shopkeeper/{shop}/update', 'ShopController@update_shop')->name('shop.update');
+
+	//Add Products to Business
+	Route::get('/shop/add', 'ProductsController@add')->name('products.add');
 });
 
 

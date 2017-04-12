@@ -18,4 +18,14 @@ class Businesses extends Model
     {
     	return $this->belongsTo(User::class);
     }
+
+
+    /**
+     * [A Business Can have Many Products]
+     * @return [type] [One to Many Relation]
+     */
+    public function products()
+    {
+        return $this->hasMany(Products::class);
+    }
 }
