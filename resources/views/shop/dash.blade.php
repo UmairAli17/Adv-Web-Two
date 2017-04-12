@@ -14,6 +14,6 @@
 		</a>
 	</div>
 	<div class="col-xs-12 col-md-4">
-		Manage Products
+		<a href="{{route('products.manage')}}">Manage Products</a>
 	</div>
 @endsection

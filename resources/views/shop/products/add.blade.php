@@ -5,7 +5,7 @@
 		<h1> Add Product to Your Shop</h1>
 	</div>
 	<div class="col-xs-12 col-md-6">
-		{!! Form::open(['method' => 'POST', 'route' => 'products.add', 'class' => 'form-horizontal']) !!}
+		{!! Form::open(['method' => 'POST', 'route' => 'products.create', 'class' => 'form-horizontal']) !!}
 		
 		    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 		        {!! Form::label('name', 'Product Name') !!}

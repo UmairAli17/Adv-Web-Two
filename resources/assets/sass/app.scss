@@ -7,3 +7,21 @@
 
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.add-item-card
+{
+	padding: 1em;
+    text-align: center;
+    opacity: .75;
+    transition: 250ms ease-in-out;
+}
+
+.add-item-card:hover
+{
+	opacity: 1;
+}
+
+.icon-large
+{
+	font-size: 10em;
+}
