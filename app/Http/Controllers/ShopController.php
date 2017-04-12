@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Gate;
 use App\User;
 use App\Businesses;
 
@@ -41,7 +42,14 @@ class ShopController extends Controller
     public function edit_shop($shop)
     {
     	$shops = Businesses::findOrFail($shop);
-    	return view('shop.edit', compact('shops'));
+    	if(Gate::allows('access', $shops))
+        {
+            return view('shop.edit', compact('shops'));
+        }
+        else
+        {
+            return back();
+        }
 	}
 
 
