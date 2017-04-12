@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+/**
+ * Roles for Shopkeepers Only
+ */
+Route::group(['middleware' => 'role:shopkeeper'], function() {
+	
+	Route::get('/shopkeeper', 'ShopController@dashboard')->name('shop.dash');
+});
+
+
+
