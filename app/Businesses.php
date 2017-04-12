@@ -8,6 +8,8 @@ class Businesses extends Model
 {
     protected $table = 'businesses';
 
+    protected $fillable = ['name', 'description', 'image'];
+
     /**
      * [One Business Connected to One User]
      * @return OnetoOne Relation

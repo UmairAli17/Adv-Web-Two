@@ -59,4 +59,17 @@ class User extends Authenticatable
     {
         return $this->hasOne(Businesses::class);
     }
+
+
+    /**
+     * [Confirm Where User Instance Owns the Related Model 
+     * through PK id and FK 'user_id']
+     * @param  [String] $relation [Model]
+     * @return [boolean]           [True/False]
+     */
+    public function owns($relation)
+    {
+        return $this->id == $relation->user_id;
+    }
+
 }

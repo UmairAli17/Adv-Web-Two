@@ -24,8 +24,14 @@ Route::get('/home', 'HomeController@index');
  * Roles for Shopkeepers Only
  */
 Route::group(['middleware' => 'role:shopkeeper'], function() {
-	
+	//Shop Dashboard
 	Route::get('/shopkeeper', 'ShopController@dashboard')->name('shop.dash');
+	//Shop Profile
+	Route::get('/shop/{shop}/profile', 'ShopController@profile')->name('shop.profile');
+	//Edit Shop Profile
+	Route::get('/shopkeeper/{shop}/edit', 'ShopController@edit_shop')->name('shop.edit');
+	//UPDATE Shop Profile
+	Route::PATCH('/shopkeeper/{shop}/update', 'ShopController@update_shop')->name('shop.update');
 });
 
 
