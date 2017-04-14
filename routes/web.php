@@ -37,10 +37,17 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 	//Manage Products
 	Route::get('/shop/manage-products', 'ProductsController@dashboard')->name('products.manage');
 
-	//Show Add Products From
-	Route::get('/shop/add', 'ProductsController@add')->name('products.add');
+	//Show Add Product From
+	Route::get('/product/add', 'ProductsController@add')->name('products.add');
 
-	Route::post('/shop/insert', 'ProductsController@create')->name('products.create');
+	//Insert Product to Database
+	Route::post('/product/insert', 'ProductsController@create')->name('products.create');
+	
+	//Show Edit Product From
+	Route::get('/product/{product}/edit/', 'ProductsController@edit')->name('products.edit');
+
+	//UPDATE Product
+	Route::PATCH('/product/{product}/update', 'ProductsController@update')->name('products.update');
 });
 
 

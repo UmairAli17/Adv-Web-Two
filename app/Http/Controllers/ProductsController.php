@@ -29,6 +29,13 @@ class ProductsController extends Controller
     	return view('shop.products.add');
     }
 
+
+
+    /**
+     * [Add All Details within Form from Request to DB Table]
+     * @param  Request $request [Form Request]
+     * @return [type]           [description]
+     */
     public function create(Request $request)
     {
     	$product = new Products($request->all());
@@ -41,5 +48,39 @@ class ProductsController extends Controller
             $newR['image'] = $name;
         }
     	$create = Auth::user()->business->products()->save($product);
+    }
+
+    /**
+     * [Show Edit Product Form. Bind Form to Product from ID Pased]
+     * @param  Request $request [description]
+     * @param  [type]  $id      [description]
+     * @return [type]           [description]
+     */
+    public function edit(Request $request, $id)
+    {
+    	$product = Products::findOrFail($id);
+    	return view('shop.products.edit', compact('product'));
+    }
+
+    /**
+     * [Update Product by ID Passed]
+     * @param  Request $request [description]
+     * @param  [type]  $id      Product Model Instance
+     * @return [type]           [description]
+     */
+    public function update(Request $request, $id)
+    {
+    	$product = Products::findOrFail($id);
+    	if($file = $request->hasFile('image'))
+    	{
+            $file = $request->file('image');
+            $name = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path().'/uploads/products', $name);
+    		$product = Products::where('id', $id)->update(['image' => $name,]);
+    	}
+        else{
+            $product->update($request->all());
+        }
+        return back();
     }
 }

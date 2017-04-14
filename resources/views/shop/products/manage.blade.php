@@ -23,7 +23,7 @@
 				{{-- EDIT/DELETE ROW --}}
 				<div class="row">
 					<div class="col-xs-12">
-						Edit
+						<a href="{{route('products.edit', [$product->id])}}">Edit</a>
 						Delete
 					</div>
 				</div>
