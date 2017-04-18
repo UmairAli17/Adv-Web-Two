@@ -24,7 +24,10 @@
 				<div class="row">
 					<div class="col-xs-12">
 						<a href="{{route('products.edit', [$product->id])}}">Edit</a>
-						Delete
+						{!! Form::open(['route' => ['products.delete', $product->id], 'method'=> 'PATCH']) !!}
+						    <button type="submit" class="btn" href="{{route('products.delete', [$product->id])}}">Delete</button>
+						{!! Form::close() !!}
+						
 					</div>
 				</div>
 				{{-- END EDIT/DELETE ROW --}}

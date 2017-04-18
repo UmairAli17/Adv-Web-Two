@@ -48,6 +48,9 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 
 	//UPDATE Product
 	Route::PATCH('/product/{product}/update', 'ProductsController@update')->name('products.update');
+
+	//DELETE Product
+	Route::PATCH('/product/{product}/delete', 'ProductsController@delete')->name('products.delete');
 });
 
 

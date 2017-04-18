@@ -76,11 +76,19 @@ class ProductsController extends Controller
             $file = $request->file('image');
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path().'/uploads/products', $name);
-    		$product = Products::where('id', $id)->update(['image' => $name,]);
+    		$product->update(['image' => $name,]);
     	}
         else{
             $product->update($request->all());
         }
+        return back();
+    }
+
+
+    public function delete($id)
+    {
+        $product = Products::findOrFail($id);
+        $product->delete();
         return back();
     }
 }

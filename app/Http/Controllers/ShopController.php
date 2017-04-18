@@ -67,7 +67,7 @@ class ShopController extends Controller
             $file = $request->file('image');
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path().'/uploads/logo', $name);
-    		$shops = Businesses::where('id', $shop)->update(['image' => $name,]);
+    		$shops->update(['image' => $name,]);
     	}
         else{
             $shops->update($request->all());
