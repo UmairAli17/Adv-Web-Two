@@ -72,4 +72,18 @@ class User extends Authenticatable
         return $this->id === $relation->user_id;
     }
 
+    /**
+     * [Get Product where User Has Role of Shopkeeper and there is a Relation between the user, their business and the product]
+     * @param  [type]  $product Products Model
+     * @return 
+     */
+    public function isShopkeeperOf($product)
+    {
+        if($this->hasRole('shopkeeper'))
+        {
+            // return $this->business->products()->where('id', $product->id)->first();
+            return $this->business->products()->first();
+        }
+    }
+
 }

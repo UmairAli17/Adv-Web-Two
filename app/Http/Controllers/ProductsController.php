@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Gate;
 use App\User;
 use App\Businesses;
 use App\Products;
@@ -59,7 +60,11 @@ class ProductsController extends Controller
     public function edit(Request $request, $id)
     {
     	$product = Products::findOrFail($id);
-    	return view('shop.products.edit', compact('product'));
+    	if(Gate::allows('shopkeeper', $product))
+        {
+            return view('shop.products.edit', compact('product'));
+        }
+        return redirect()->route('home');
     }
 
     /**
@@ -88,7 +93,10 @@ class ProductsController extends Controller
     public function delete($id)
     {
         $product = Products::findOrFail($id);
-        $product->delete();
-        return back();
+        if(Gate::allows('shopkeeper', $product))
+        {
+            $product->delete();
+        }
+        return redirect()->route('home');
     }
 }
