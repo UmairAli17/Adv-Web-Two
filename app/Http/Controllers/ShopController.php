@@ -29,8 +29,8 @@ class ShopController extends Controller
      */
     public function profile($shop)
     {
-    	$business = Businesses::findOrFail($shop);
-    	return $business;
+    	$business = Businesses::with('products', 'user')->findOrFail($shop);
+    	return view('shop.profile', compact('business'));
     }
 
 
@@ -67,11 +67,21 @@ class ShopController extends Controller
             $file = $request->file('image');
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path().'/uploads/logo', $name);
-    		$shops->update(['image' => $name,]);
+    		$shops->update([
+                'image' => $name,
+                'name' => $request->name,
+                'description' => $request->description,
+            ]);
     	}
         else{
             $shops->update($request->all());
         }
         return back();
 	}
+
+    public function all()
+    {
+        $shops = Businesses::all();
+        return view('home', compact('shops'));
+    }
 }

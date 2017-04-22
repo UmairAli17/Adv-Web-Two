@@ -17,6 +17,7 @@
 		@forelse($products->business->products as $product)
 			{{-- PRODUCT CARD --}}
 			<div class="col-md-4 product-card">
+				<img class="img img-thumbnail" src="{{asset('/uploads/products') . '/' . $product->image}}">
 				<h4>{{$product->name}}</h4>
 				<p>{{$product->description}}</p>
 				<p>£{{$product->price}}

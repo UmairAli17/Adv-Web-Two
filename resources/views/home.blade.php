@@ -3,15 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    You are logged in!
-                </div>
+        <h1>All Shops</h1>
+        @forelse($shops as $shop)
+            <div class="col-xs-12 col-md-4">
+                <img class="img img-thumbnail" src="{{asset('uploads/logo/' . $shop->image)}}">
+                <h3>{{$shop->name}}</h3>
+                <p>{{$shop->description}}</p>
+                <a href="{{route('shop.profile', ['id' => $shop->id])}}" class="btn btn-default">View Shop</a>
             </div>
-        </div>
+        @empty
+            <div class="panel-body">
+                <h1>No Shops on This Website as of Yet</h1>
+            </div>
+        @endforelse
     </div>
 </div>
 @endsection

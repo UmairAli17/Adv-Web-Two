@@ -46,7 +46,7 @@ class ProductsController extends Controller
             $file = $request->file('image');
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path().'/uploads/products', $name);
-            $newR['image'] = $name;
+            $product['image'] = $name;
         }
     	$create = Auth::user()->business->products()->save($product);
     }
@@ -81,7 +81,12 @@ class ProductsController extends Controller
             $file = $request->file('image');
             $name = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path().'/uploads/products', $name);
-    		$product->update(['image' => $name,]);
+    		$product->update([
+                'image' => $name,
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+            ]);
     	}
         else{
             $product->update($request->all());

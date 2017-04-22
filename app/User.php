@@ -81,8 +81,7 @@ class User extends Authenticatable
     {
         if($this->hasRole('shopkeeper'))
         {
-            // return $this->business->products()->where('id', $product->id)->first();
-            return $this->business->products()->first();
+            return $this->business->products()->where('id', $product->id)->first();
         }
     }
 
