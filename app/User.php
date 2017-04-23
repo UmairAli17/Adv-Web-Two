@@ -62,6 +62,16 @@ class User extends Authenticatable
 
 
     /**
+     * [Get all Of Current User's Products through their Business]
+     * @return [type] [Has Many Relationship]
+     */
+    public function products()
+    {
+        return $this->hasManyThrough(Products::class, Businesses::class, 'user_id', 'businesses_id');
+    }
+
+
+    /**
      * [Confirm Where User Instance Owns the Related Model 
      * through PK id and FK 'user_id']
      * @param  [String] $relation [Model]
@@ -81,7 +91,8 @@ class User extends Authenticatable
     {
         if($this->hasRole('shopkeeper'))
         {
-            return $this->business->products()->where('id', $product->id)->first();
+            return $this->products()->where('products.id', $product->id)->first();
+            //return $this->business->products()->where('id', $product->id)->first();
         }
     }
 
