@@ -20,19 +20,36 @@ Auth::routes();
 Route::get('/home', 'ShopController@all')->name('home');
 
 
+Route::group(['middleware' => 'role:shopkeeper|user'], function() {
+	//Shop Profile
+	Route::get('/shop/{shop}/profile', 'ShopController@profile')->name('shop.profile');
+
+	//Add Order
+	Route::get('/order/add/{id}', 'OrderController@addOrder')->name('orders.add');
+
+	//View own Orders
+	Route::get('/orders/my-orders', 'OrderController@viewMyOrders')->name('orders.mine');
+
+	//View own Orders
+	Route::get('/orders/{id}/delete', 'OrderController@delete')->name('orders.delete');
+
+	//View Product
+	Route::get('/product/{product}', 'ProductsController@view')->name('products.view');
+
+	Route::get('/test', 'HomeController@test');
+});
+
 /**
  * Roles for Shopkeepers Only
  */
 Route::group(['middleware' => 'role:shopkeeper'], function() {
 	//Shop Dashboard
 	Route::get('/shopkeeper', 'ShopController@dashboard')->name('shop.dash');
-	//Shop Profile
-	Route::get('/shop/{shop}/profile', 'ShopController@profile')->name('shop.profile');
+	
 	//Edit Shop Profile
-	Route::get('/shopkeeper/{shop}/edit', 'ShopController@edit_shop')->name('shop.edit');
+	Route::get('/shopkeeper/{shop}/edit', 'ShopController@editShop')->name('shop.edit');
 	//UPDATE Shop Profile
-	Route::PATCH('/shopkeeper/{shop}/update', 'ShopController@update_shop')->name('shop.update');
-
+	Route::PATCH('/shopkeeper/{shop}/update', 'ShopController@updateShop')->name('shop.update');
 
 	//Manage Products
 	Route::get('/shop/manage-products', 'ProductsController@dashboard')->name('products.manage');
@@ -51,6 +68,9 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 
 	//DELETE Product
 	Route::PATCH('/product/{product}/delete', 'ProductsController@delete')->name('products.delete');
+
+	// Show Business Orders
+	Route::get('/shop/orders', 'ShopController@viewBusinessOrders')->name('shop.orders');
 });
 
 

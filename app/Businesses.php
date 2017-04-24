@@ -28,4 +28,17 @@ class Businesses extends Model
     {
         return $this->hasMany(Products::class);
     }
+
+
+    /**
+     * [A Business Can have Many Product Orders]
+     * @return [type] Get this businesses Orders
+     */
+    public function orders()
+    {
+        return $this->hasManyThrough(Order::class, Products::class, 'businesses_id', 'products_id');
+    }
+
+
+    
 }

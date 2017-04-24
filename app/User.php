@@ -70,6 +70,15 @@ class User extends Authenticatable
         return $this->hasManyThrough(Products::class, Businesses::class, 'user_id', 'businesses_id');
     }
 
+    /**
+     * [Get all of User's Orders through the Products Orders Class (Models)]
+     * @return [type] [Has Many Relationship]
+     */
+    public function product_orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
+    }
+
 
     /**
      * [Confirm Where User Instance Owns the Related Model 

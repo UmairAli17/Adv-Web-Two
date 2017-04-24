@@ -11,6 +11,18 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
+    /**
+     * Display all Products
+     */
+    public function all(Request $request)
+    {
+        $query = $request->q;
+            $products = $query
+                ? Products::search($query)->get()
+                : Products::with('business')->get();
+        return view('products.all', compact('products'));
+    }
+
 	/**
 	 * [Lazyload all the Current User's Products that are Connected to their business]
 	 * @return [type] [Collection]
@@ -49,6 +61,18 @@ class ProductsController extends Controller
             $product['image'] = $name;
         }
     	$create = Auth::user()->business->products()->save($product);
+    }
+
+
+     /**
+     * [Display the Product]
+     * @param  [type]  $id      [Product Model]
+     * @return [type]           [description]
+     */
+    public function view($id)
+    {
+        $product = Products::findOrFail($id);
+        return $product;
     }
 
     /**

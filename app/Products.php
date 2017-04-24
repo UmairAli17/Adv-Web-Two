@@ -16,4 +16,14 @@ class Products extends Model
    {
    		return $this->belongsTo(Businesses::class, 'businesses_id');
    }
+
+  /**
+    * [A Product May Have Many Orders]
+    * @return  [One to Many Relation - Inverse]
+    */
+   public function orders()
+   {
+   		return $this->hasMany(Order::class, 'products_id');
+   }
+
 }

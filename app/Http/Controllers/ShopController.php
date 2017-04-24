@@ -12,6 +12,16 @@ class ShopController extends Controller
 {
 
     /**
+     * [Display All Shops]
+     * @return Shop Collection
+    */
+    public function all()
+    {
+        $shops = Businesses::all();
+        return view('home', compact('shops'));
+    }
+
+    /**
      * [Display Shopkeeper Dashboard]
      * @return [type] [description]
      */
@@ -39,7 +49,7 @@ class ShopController extends Controller
      * @param  [type] $shop [description]
      * @return [type]       [description]
      */
-    public function edit_shop($shop)
+    public function editShop($shop)
     {
     	$shops = Businesses::findOrFail($shop);
     	if(Gate::allows('access', $shops))
@@ -59,7 +69,7 @@ class ShopController extends Controller
      * @param  [type]  $shop    [Business Model instance]
      * @return [type]
      */
-	public function update_shop(Request $request, $shop)
+	public function updateShop(Request $request, $shop)
     {
     	$shops = Businesses::findOrFail($shop);
     	if($file = $request->hasFile('image'))
@@ -79,9 +89,14 @@ class ShopController extends Controller
         return back();
 	}
 
-    public function all()
+    /**
+     * Display Current User's Business Orders
+     */
+    public function viewBusinessOrders()
     {
-        $shops = Businesses::all();
-        return view('home', compact('shops'));
+        $shopOrders = Auth::user()->load('business.orders.products');
+        return view('shop.orders', compact('shopOrders'));
     }
+
+    
 }
