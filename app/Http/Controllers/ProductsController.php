@@ -23,6 +23,18 @@ class ProductsController extends Controller
         return view('products.all', compact('products'));
     }
 
+
+    /**
+     * [Display the Product]
+     * @param  [type]  $id      [Product Model]
+     * @return [type]           [description]
+     */
+    public function view($id)
+    {
+        $product = Products::findOrFail($id);
+        return $product;
+    }
+
 	/**
 	 * [Lazyload all the Current User's Products that are Connected to their business]
 	 * @return [type] [Collection]
@@ -41,8 +53,6 @@ class ProductsController extends Controller
     {
     	return view('shop.products.add');
     }
-
-
 
     /**
      * [Add All Details within Form from Request to DB Table]
@@ -64,16 +74,7 @@ class ProductsController extends Controller
     }
 
 
-     /**
-     * [Display the Product]
-     * @param  [type]  $id      [Product Model]
-     * @return [type]           [description]
-     */
-    public function view($id)
-    {
-        $product = Products::findOrFail($id);
-        return $product;
-    }
+     
 
     /**
      * [Show Edit Product Form. Bind Form to Product from ID Pased]

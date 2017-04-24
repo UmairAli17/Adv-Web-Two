@@ -33,6 +33,9 @@ Route::group(['middleware' => 'role:shopkeeper|user'], function() {
 	//View own Orders
 	Route::get('/orders/{id}/delete', 'OrderController@delete')->name('orders.delete');
 
+	//Get All Products
+	Route::get('/products/all', 'ProductsController@all')->name('products.all');
+
 	//View Product
 	Route::get('/product/{product}', 'ProductsController@view')->name('products.view');
 
@@ -55,7 +58,7 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 	Route::get('/shop/manage-products', 'ProductsController@dashboard')->name('products.manage');
 
 	//Show Add Product From
-	Route::get('/product/add', 'ProductsController@add')->name('products.add');
+	Route::get('/create-product', 'ProductsController@add')->name('products.add');
 
 	//Insert Product to Database
 	Route::post('/product/insert', 'ProductsController@create')->name('products.create');
