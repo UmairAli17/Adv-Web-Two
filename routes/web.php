@@ -12,15 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'ShopController@all')->name('home');
 
 
 Route::group(['middleware' => 'role:shopkeeper|user'], function() {
+    
+    //Logged in Homepage
+    Route::get('/home', 'ShopController@all')->name('home');
+    
 	//Shop Profile
 	Route::get('/shop/{shop}/profile', 'ShopController@profile')->name('shop.profile');
 
@@ -47,12 +50,12 @@ Route::group(['middleware' => 'role:shopkeeper|user'], function() {
  */
 Route::group(['middleware' => 'role:shopkeeper'], function() {
 	//Shop Dashboard
-	Route::get('/shopkeeper', 'ShopController@dashboard')->name('shop.dash');
+	Route::get('/shop', 'ShopController@dashboard')->name('shop.dash');
 	
 	//Edit Shop Profile
-	Route::get('/shopkeeper/{shop}/edit', 'ShopController@editShop')->name('shop.edit');
+	Route::get('/shop/{shop}/edit', 'ShopController@editShop')->name('shop.edit');
 	//UPDATE Shop Profile
-	Route::PATCH('/shopkeeper/{shop}/update', 'ShopController@updateShop')->name('shop.update');
+	Route::PATCH('/shop/{shop}/update', 'ShopController@updateShop')->name('shop.update');
 
 	//Manage Products
 	Route::get('/shop/manage-products', 'ProductsController@dashboard')->name('products.manage');
@@ -74,6 +77,8 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 
 	// Show Business Orders
 	Route::get('/shop/orders', 'ShopController@viewBusinessOrders')->name('shop.orders');
+
+	Route::get('/shop/orders/view', 'ShopController@downloadExcel')->name('shop.ordersDownload');
 });
 
 

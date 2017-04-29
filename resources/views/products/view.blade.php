@@ -2,6 +2,11 @@
 
 @section('content')
 	<div class="col-md-6 col-md-offset-3">
-		<img class="img img-responsive imp-thumbnail" src="{{asset('uploads/products'. $product->image)}}">
+		<h1>{{$product->name}}</h1>
+		<a href="{{route('shop.profile', ['id' => $product->business->id])}}"><p>Seller: {{$product->business->name}}</p></a>
+		<img class="img img-responsive imp-thumbnail" src="{{asset('uploads/products/'. $product->image)}}">
+		<p>{{$product->description}}</p>
+		<p>£{{$product->price}}</p>
+		<a href="{{route('orders.add', ['id' => $product->id])}}" class="btn btn-success">Order Product</a>
 	</div>
 @endsection

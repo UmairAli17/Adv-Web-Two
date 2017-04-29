@@ -7,7 +7,7 @@ use Auth;
 use Gate;
 use App\User;
 use App\Businesses;
-
+use PDF;
 class ShopController extends Controller
 {
 
@@ -96,6 +96,14 @@ class ShopController extends Controller
     {
         $shopOrders = Auth::user()->load('business.orders.products');
         return view('shop.orders', compact('shopOrders'));
+    }
+
+
+    public function downloadExcel()
+    {
+        $shopOrders = Auth::user()->load('business.orders.products');
+        $pdf = PDF::loadView('shop.print', compact('shopOrders'));
+        return $pdf->download($shopOrders->business->name.' orders.pdf');
     }
 
     

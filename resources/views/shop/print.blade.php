@@ -1,9 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
-	<h1>Business Orders</h1>
-	<div class="table-responsive">
-		<table class="table table-bordered">
+	<h1>{{$shopOrders->business->name}} Orders</h1>
+	<div">
+		<table">
 			<thead>
 				<th>Order #</th>
 				<th>Product Name</th>
@@ -23,9 +20,5 @@
 			@endforelse
 			</tbody>
 		</table>
-
-		<a href="{{route('shop.ordersDownload')}}" class="btn btn-success pull-right">Download {{$shopOrders->business->name}} Orders</a>
-
 	</div>
 
-@endsection

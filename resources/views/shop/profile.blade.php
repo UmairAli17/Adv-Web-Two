@@ -24,7 +24,8 @@
 				<h3>{{$product->name}}</h3>
 				<p>{{$product->description}}</p>
 				<p>Price: {{$product->price}}</p>
-				<a href="{{route('orders.add', ['id' => $product->id])}}" class="btn btn-success">Buy Product</a>
+				<a href="{{route('orders.add', ['id' => $product->id])}}" class="btn btn-success">Order Product</a>
+				<a href="{{route('products.view', ['id' => $product->id])}}" class="btn btn-default">View Product</a>
 			</div>
 		@empty
 			<h1>Well.. it doesn't look as if {{$business->user->name}} has Uploaded any Products!</h1>

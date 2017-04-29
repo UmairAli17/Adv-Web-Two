@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class ProductsController extends Controller
 {
     /**
-     * Display all Products
+     * Display all Products or Search if a Request is Sent through Search Box
      */
     public function all(Request $request)
     {
@@ -31,8 +31,8 @@ class ProductsController extends Controller
      */
     public function view($id)
     {
-        $product = Products::findOrFail($id);
-        return $product;
+        $product = Products::with('business')->findOrFail($id);
+        return view('products.view', compact('product'));
     }
 
 	/**
@@ -43,7 +43,6 @@ class ProductsController extends Controller
 	{
 		$products = Auth::user()->load('business.products');
 		return view('shop.products.manage', compact('products'));
-		// return $products->business->products;
 	}
 
 	/**
@@ -71,6 +70,7 @@ class ProductsController extends Controller
             $product['image'] = $name;
         }
     	$create = Auth::user()->business->products()->save($product);
+        return redirect()->route('products.view', ['id' => $product->id]);
     }
 
 
@@ -101,25 +101,35 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
     	$product = Products::findOrFail($id);
-    	if($file = $request->hasFile('image'))
+        if(Gate::allows('shopkeeper', $product))
     	{
-            $file = $request->file('image');
-            $name = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path().'/uploads/products', $name);
-    		$product->update([
-                'image' => $name,
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
-            ]);
-    	}
-        else{
-            $product->update($request->all());
+            if($file = $request->hasFile('image'))
+            {
+                $file = $request->file('image');
+                $name = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path().'/uploads/products', $name);
+                $product->update([
+                    'image' => $name,
+                    'name' => $request->name,
+                    'description' => $request->description,
+                    'price' => $request->price,
+                ]);
+                return redirect()->route('products.view', ['id' => $product->id]);
+            }
+            else{
+                $product->update($request->all());
+                return redirect()->route('products.view', ['id' => $product->id]);
+            }
         }
         return back();
     }
 
-
+    /**
+     * [Delete Product by ID Passed But only if User is the Shopkeeper]
+     * @param  Request $request [description]
+     * @param  [type]  $id      Product Model Instance
+     * @return [type]           [description]
+     */
     public function delete($id)
     {
         $product = Products::findOrFail($id);

@@ -14,6 +14,9 @@
 		</a>
 	</div>
 	<div class="col-xs-12 col-md-4">
-		<a href="{{route('products.manage')}}">Manage Products</a>
+		<a href="{{route('products.manage')}}">
+			<span class="glyphicon glyphicon-gift icon-large"></span>.
+			Manage Products
+		</a>
 	</div>
 @endsection
