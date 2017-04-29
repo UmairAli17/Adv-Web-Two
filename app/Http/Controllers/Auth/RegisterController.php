@@ -45,6 +45,7 @@ class RegisterController extends Controller
     }
 
 
+
     /**
      * Override the OOBT register function().
      *

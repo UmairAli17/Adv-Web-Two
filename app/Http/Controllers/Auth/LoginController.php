@@ -31,6 +31,20 @@ class LoginController extends Controller
     protected $redirectAfterLogout = '/login';
 
     /**
+     * [If User has Role of Shopkeep, Send them to the Dashboard]
+     * @param  
+     * @param  
+     * @return 
+     */
+    public function authenticated($request, $user)
+    {
+        if($user->hasRole('shopkeeper')) {
+            return redirect('/shop/');
+        }
+        return redirect()->intended($this->redirectPath());
+    }
+
+    /**
      * Create a new controller instance.
      *
      * @return void

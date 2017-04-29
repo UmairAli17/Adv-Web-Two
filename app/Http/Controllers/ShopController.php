@@ -98,8 +98,11 @@ class ShopController extends Controller
         return view('shop.orders', compact('shopOrders'));
     }
 
-
-    public function downloadExcel()
+    /**
+     * [Download PDF of Shop Orders]
+     * @return PDF with Orders
+     */
+    public function downloadPDF()
     {
         $shopOrders = Auth::user()->load('business.orders.products');
         $pdf = PDF::loadView('shop.print', compact('shopOrders'));

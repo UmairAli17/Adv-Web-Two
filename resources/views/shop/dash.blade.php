@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+	<h1> Shop Dashboard</h1>
 	<div class="col-xs-12 col-md-4">
 		<a href="{{route('shop.profile', ['id' => $shop->business->id])}}">
 			<span class="glyphicon glyphicon-briefcase icon-large"></span>

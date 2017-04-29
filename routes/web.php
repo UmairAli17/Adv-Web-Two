@@ -17,8 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-
 Route::group(['middleware' => 'role:shopkeeper|user'], function() {
     
     //Logged in Homepage
@@ -78,7 +76,7 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 	// Show Business Orders
 	Route::get('/shop/orders', 'ShopController@viewBusinessOrders')->name('shop.orders');
 
-	Route::get('/shop/orders/view', 'ShopController@downloadExcel')->name('shop.ordersDownload');
+	Route::get('/shop/orders/view', 'ShopController@downloadPDF')->name('shop.ordersDownload');
 });
 
 
