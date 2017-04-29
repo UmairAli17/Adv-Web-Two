@@ -19,3 +19,6 @@ barryvdh/laravel-dompdf - DOMPDF Wrapper for Laravel - Used for Exporting View t
 https://github.com/barryvdh/laravel-dompdf
 
 
+**maatwebsite/excel**
+maatwebsite/excel - Package Used to Exporting Data to Excel
+https://github.com/Maatwebsite/Laravel-Excel
