@@ -8,6 +8,7 @@
 
 	@forelse($products as $product)
 		<div class="col-md-4">
+			<img class="img img-responsive imp-thumbnail" src="{{asset('uploads/products/'. $product->image)}}">
 			<h5>{{$product->name}}</h5>
 			<p>{{$product->description}}</p>
 			<p>£{{$product->price}}</p>

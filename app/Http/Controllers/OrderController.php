@@ -29,7 +29,6 @@ class OrderController extends Controller
     public function viewMyOrders()
     {
     	$orders = Auth::user()->load('product_orders.products');
-    	// return $orders;
     	return view('orders.customers.all', compact('orders'));
     }
 

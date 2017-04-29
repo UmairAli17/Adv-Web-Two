@@ -5,6 +5,7 @@
 	<h1>Edit Product Details</h1>
 	</div>
 	<div class="col-xs-12 col-md-6">
+		@include('errors.errors')
 		{!! Form::model($product, ['method' => 'patch', 'files' => true, 'route' => ['products.update', $product->id,]]) !!}
 
 			<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

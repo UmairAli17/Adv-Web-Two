@@ -24,8 +24,10 @@
 			</tbody>
 		</table>
 
-		<a href="{{route('shop.ordersDownload')}}" class="btn btn-success pull-right">Download {{$shopOrders->business->name}} Orders</a>
-
+		<br>
+			<a href="{{route('shop.ordersDownload')}}" class="btn btn-danger pull-right">Download as PDF {{$shopOrders->business->name}} Orders</a>
+		<br><br>
+			<a href="{{route('shop.orders.excel')}}" class="btn btn-success pull-right"> Download as Excel {{$shopOrders->business->name}} Orders</a>
 	</div>
 
 @endsection

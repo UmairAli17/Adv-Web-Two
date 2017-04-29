@@ -8,7 +8,7 @@ use App\User;
 use App\Businesses;
 use App\Products;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ProductRequest;
 class ProductsController extends Controller
 {
     /**
@@ -58,7 +58,7 @@ class ProductsController extends Controller
      * @param  Request $request [Form Request]
      * @return [type]           [description]
      */
-    public function create(Request $request)
+    public function create(ProductRequest $request)
     {
     	$product = new Products($request->all());
     	if($file = $request->hasFile('image'))

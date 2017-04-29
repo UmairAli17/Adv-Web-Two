@@ -5,6 +5,7 @@
 		<h1>Update Shop Profile</h1>
 	</div>
 	<div class="col-xs-12 col-md-6">
+	@include('errors.errors')
 		{!! Form::model($shops, ['method' => 'patch', 'files' => true, 'route' => ['shop.update', $shops->id,]]) !!}
 
 			<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

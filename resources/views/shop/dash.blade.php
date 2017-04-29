@@ -20,4 +20,11 @@
 			Manage Products
 		</a>
 	</div>
+
+	<div class="col-xs-12 col-md-4">
+		<a href="{{route('shop.orders')}}">
+			<span class="glyphicon glyphicon-list icon-large"></span>
+			View Shop Orders
+		</a>
+	</div>
 @endsection

@@ -5,6 +5,7 @@
 		<h1> Add Product to Your Shop</h1>
 	</div>
 	<div class="col-xs-12 col-md-6">
+		@include('errors.errors')
 		{!! Form::open(['method' => 'POST', 'route' => 'products.create', 'files'=>'true', 'class' => 'form-horizontal']) !!}
 		
 		    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -32,7 +33,9 @@
 		        {!! Form::reset("Reset", ['class' => 'btn btn-warning']) !!}
 		        {!! Form::submit("Add", ['class' => 'btn btn-success']) !!}
 		    </div>
-		
+
 		{!! Form::close() !!}
+
 	</div>
+
 @endsection

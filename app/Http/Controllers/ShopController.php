@@ -8,6 +8,7 @@ use Gate;
 use App\User;
 use App\Businesses;
 use PDF;
+use Excel;
 class ShopController extends Controller
 {
 
@@ -102,12 +103,25 @@ class ShopController extends Controller
      * [Download PDF of Shop Orders]
      * @return PDF with Orders
      */
-    public function downloadPDF()
+    public function downloadPDFOrders()
     {
         $shopOrders = Auth::user()->load('business.orders.products');
         $pdf = PDF::loadView('shop.print', compact('shopOrders'));
         return $pdf->download($shopOrders->business->name.' orders.pdf');
     }
 
+    /**
+     * [Download Excel of Orders]
+     * @return [type] [description]
+     */
+    public function downloadExcelOrders()
+    {
+        $orders = Auth::user()->business->orders;
+        Excel::create('My Orders', function($excel) use ($orders) {
+            $excel->sheet('Orders', function($sheet) use ($orders) {
+                $sheet->fromModel($orders);
+            });
+        })->download('xls');
+    }
     
 }

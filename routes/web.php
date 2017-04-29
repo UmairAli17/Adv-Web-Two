@@ -31,7 +31,7 @@ Route::group(['middleware' => 'role:shopkeeper|user'], function() {
 	//View own Orders
 	Route::get('/orders/my-orders', 'OrderController@viewMyOrders')->name('orders.mine');
 
-	//View own Orders
+	//Delete own Orders
 	Route::get('/orders/{id}/delete', 'OrderController@delete')->name('orders.delete');
 
 	//Get All Products
@@ -39,6 +39,7 @@ Route::group(['middleware' => 'role:shopkeeper|user'], function() {
 
 	//View Product
 	Route::get('/product/{product}', 'ProductsController@view')->name('products.view');
+
 
 	Route::get('/test', 'HomeController@test');
 });
@@ -76,7 +77,11 @@ Route::group(['middleware' => 'role:shopkeeper'], function() {
 	// Show Business Orders
 	Route::get('/shop/orders', 'ShopController@viewBusinessOrders')->name('shop.orders');
 
-	Route::get('/shop/orders/view', 'ShopController@downloadPDF')->name('shop.ordersDownload');
+	//Download Business Orders as PDF
+	Route::get('/shop/orders/pdf', 'ShopController@downloadPDFOrders')->name('shop.ordersDownload');
+
+	// Download Business Orders as Excel
+	Route::get('/shop/orders/excel', 'ShopController@downloadExcelOrders')->name('shop.orders.excel');
 });
 
 
