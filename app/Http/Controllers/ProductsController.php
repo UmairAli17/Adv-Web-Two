@@ -24,6 +24,7 @@ class ProductsController extends Controller
     }
 
 
+
     /**
      * [Display the Product]
      * @param  [type]  $id      [Product Model]

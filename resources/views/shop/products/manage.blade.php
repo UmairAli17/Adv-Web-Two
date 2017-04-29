@@ -18,7 +18,7 @@
 			{{-- PRODUCT CARD --}}
 			<div class="col-md-4 product-card">
 				<img class="img img-thumbnail" src="{{asset('/uploads/products') . '/' . $product->image}}">
-				<h4>{{$product->name}}</h4>
+				<a href="{{route('products.view', ['id' => $product->id])}}"><h4>{{$product->name}}</h4></a>
 				<p>{{$product->description}}</p>
 				<p>£{{$product->price}}
 				{{-- EDIT/DELETE ROW --}}
