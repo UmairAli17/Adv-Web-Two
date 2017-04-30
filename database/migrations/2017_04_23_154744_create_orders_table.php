@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->integer('products_id')->unsigned();
             $table->foreign('products_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('user_id')->unsigned()->index()->unique();
+            $table->integer('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

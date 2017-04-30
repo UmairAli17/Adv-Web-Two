@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
     	$productOrder = Products::findOrFail($id);
     	$order = new Order($request->all());
-    	$order['user_id'] = Auth::user()->id;
+        $order->user()->associate(Auth::user());
     	$productOrder->orders()->save($order);
     	return redirect()->route('orders.mine');
     }
