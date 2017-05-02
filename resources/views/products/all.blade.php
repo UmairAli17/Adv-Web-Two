@@ -3,7 +3,8 @@
 @section('content')
 	<h1>Search for Products</h1>
 	{!! Form::open(['route' => 'products.all', 'method' => 'GET']) !!}
-		{!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search by Product Name or Shop Name', 'id'=>'q', 'required' => 'required']) !!}
+		{!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Search by Product Name or Shop Name: Press Enter', 'id'=>'q', 'required' => 'required']) !!}
+
 	{!! Form::close() !!}
 
 	@forelse($products as $product)

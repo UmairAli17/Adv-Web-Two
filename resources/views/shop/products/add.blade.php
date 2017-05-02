@@ -15,14 +15,14 @@
 		    </div>
 
 		    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
-		        {!! Form::label('description', 'Input label') !!}
+		        {!! Form::label('description', 'Product Description') !!}
 		        {!! Form::textarea('description', null, ['class' => 'form-control', 'required' => 'required']) !!}
 		        <small class="text-danger">{{ $errors->first('description') }}</small>
 		    </div>
 
 		    <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }}">
 		        {!! Form::label('price', 'Enter Your Price') !!}
-		        {!! Form::text('price', null, ['class' => 'form-control price-input', 'required' => 'required']) !!}
+		        {!! Form::number('price', null, ['class' => 'form-control price-input', 'required' => 'required']) !!}
 		        <small class="text-danger">{{ $errors->first('price') }}</small>
 		    </div>
 
@@ -33,7 +33,6 @@
 		        {!! Form::reset("Reset", ['class' => 'btn btn-warning']) !!}
 		        {!! Form::submit("Add", ['class' => 'btn btn-success']) !!}
 		    </div>
-
 		{!! Form::close() !!}
 
 	</div>

@@ -19,7 +19,7 @@
 			{{-- END SHOP DETAILS --}}
 		</div>
 		{{-- END BUSINESS/ SHOP DETAILS ROW --}}
-
+		<hr>
 		<div class="row">
 		@forelse($business->products as $product)
 			<div class="col-md-4">
