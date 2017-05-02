@@ -30,10 +30,11 @@
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
 
-                        		<li><a href="{{route('home')}}">All Shops</a>
-                        		<li><a href="{{route('products.all')}}">All  Products</a>
+                        		<li><a href="{{route('home')}}">All Shops</a></li>
+                        		<li><a href="{{route('products.all')}}">All  Products</a></li>
+                                <li><a href="{{route('orders.mine')}}">View My Orders</a></li>
                         	@can('shopkeeper')
-                        		<li><a href="{{route('shop.dash')}}">Shop Dashboard</a>
+                        		<li><a href="{{route('shop.dash')}}">Shop Dashboard</a></li>
                             @endcan
 
                             <li class="dropdown">

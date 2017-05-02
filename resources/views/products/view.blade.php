@@ -8,5 +8,8 @@
 		<p>{{$product->description}}</p>
 		<p>£{{$product->price}}</p>
 		<a href="{{route('orders.add', ['id' => $product->id])}}" class="btn btn-success">Order Product</a>
+		@can('shopkeeper', $product)
+			<a href="{{route('products.edit', ['id' => $product->id])}}" class="btn btn-default">Edit Product</a>
+		@endcan 
 	</div>
 @endsection

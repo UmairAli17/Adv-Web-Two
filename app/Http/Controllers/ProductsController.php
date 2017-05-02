@@ -90,7 +90,8 @@ class ProductsController extends Controller
         {
             return view('shop.products.edit', compact('product'));
         }
-        return redirect()->route('home');
+        return back();
+       
     }
 
     /**
@@ -138,6 +139,6 @@ class ProductsController extends Controller
         {
             $product->delete();
         }
-        return redirect()->route('home');
+        return back();
     }
 }

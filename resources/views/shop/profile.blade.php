@@ -10,6 +10,9 @@
 			{{-- END LOGO CONTAINER --}}
 			{{-- SHOP DETAILS --}}
 			<div class="col-md-8">
+				@can('access', $business)
+					<a href="{{ route('shop.edit', ['id' => $business->id]) }}" class="btn btn-default">Edit Business Profile</a>
+				@endcan
 				<h1>{{$business->name}}</h1>
 				<p>{{$business->description}}</p>
 			</div>

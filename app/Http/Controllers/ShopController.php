@@ -85,9 +85,11 @@ class ShopController extends Controller
                 'name' => $request->name,
                 'description' => $request->description,
             ]);
+            return redirect()->route('shop.profile', $shops->id);
     	}
         else{
             $shops->update($request->all());
+            return redirect()->route('shop.profile', $shops->id);
         }
         return back();
 	}
