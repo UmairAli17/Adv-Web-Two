@@ -48,7 +48,8 @@ class RegisterController extends Controller
 
     /**
      * Override the OOBT register function().
-     *
+     * If User Chose Shopkeeper Role, run the Event and Subsequent
+     * Listener to Attach (Associate) A Business with that User
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
