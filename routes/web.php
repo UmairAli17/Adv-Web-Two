@@ -17,6 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+/**
+* Routes for All Users who have a Role and are Auth'd
+*/
 Route::group(['middleware' => 'role:shopkeeper|user'], function() {
     
     //Logged in Homepage
@@ -39,9 +42,6 @@ Route::group(['middleware' => 'role:shopkeeper|user'], function() {
 
 	//View Product
 	Route::get('/product/{product}', 'ProductsController@view')->name('products.view');
-
-
-	Route::get('/test', 'HomeController@test');
 });
 
 /**

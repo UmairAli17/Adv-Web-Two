@@ -25,10 +25,4 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function test()
-    {
-        $query = Auth::user()->business->orders()->get();
-        return $query;
-    }
 }
